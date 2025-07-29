@@ -1,0 +1,17 @@
+NVCC	= nvcc -O3 -I/usr/include/x86_64-linux-gnu/openmpi -arch=sm_70 -Xcompiler -fopenmp -D_mpi_version -I../include
+CC	= mpic++
+LD	= mpic++ 
+CPP	= $(CC)
+install = install
+instdir = ~/bin
+CCFLAGS	= -fopenmp -O3 -D_mpi_version -DGSL_RANGE_CHECK_OFF -DGSL_C99_INLINE -DHAVE_INLINE -D_CUDA -D_GPU
+LDFLAGS	= -L/usr/local/cuda/lib64 -lpthread -ldl -lgomp -lcudart
+INCLUDE	= -I/usr/local/cuda/include -I/usr/include/x86_64-linux-gnu/openmpi 
+LIBCBLAS	= -lgslcblas
+LIBFFTW	= -lfftw3_omp -lfftw3
+
+GPUSRCS = qpicudakernel.cu
+GPUOBJS = qpicudakernel.o
+
+%.o : %.cu
+	$(NVCC) -c $< -o $@

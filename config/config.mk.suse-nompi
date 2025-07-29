@@ -1,0 +1,11 @@
+CC      = c++ 
+LD      = c++ 
+CPP     = $(CC)
+install = install
+instdir = $(HOME)/bin
+CCFLAGS = -fopenmp -O3 -DGSL_RANGE_CHECK_OFF -DGSL_C99_INLINE -DHAVE_INLINE
+LDFLAGS = -lpthread -ldl -lgomp
+INCLUDE =  
+LIBCBLAS        = -lgslcblas
+LIBFFTW         = -lfftw3_omp -lfftw3
+

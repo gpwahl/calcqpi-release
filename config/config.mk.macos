@@ -1,0 +1,11 @@
+CC	= mpic++
+LD	= mpic++ 
+CPP	= $(CC)
+install = install
+instdir = $(HOME)/bin
+CCFLAGS	= -Xclang -fopenmp -O3 -D_mpi_version -DGSL_RANGE_CHECK_OFF -DGSL_C99_INLINE -DHAVE_INLINE 
+LDFLAGS	= -L/opt/homebrew/lib -lpthread -ldl -lomp
+INCLUDE	= -I/opt/homebrew/include
+LIBCBLAS	= -lgslcblas
+LIBFFTW	= -lfftw3_omp -lfftw3
+

@@ -1,0 +1,21 @@
+NVCC    = nvcc -O3 -I$(MPI_INCLUDE) -I/software/GCCLIBS/include -I../include -arch=sm_70 -Xcompiler -fopenmp -D_mpi_version
+CC      = mpic++ 
+LD      = mpic++ 
+CPP     = $(CC)
+install = install
+instdir = $(HOME)/bin.cuda
+KL1P    = $(HOME)/scratch/src/KL1p-0.4.2
+LBFGS   = $(HOME)/scratch/src/liblbfgs-1.10
+CCFLAGS = -fopenmp -O3 -D_mpi_version -DGSL_RANGE_CHECK_OFF -DGSL_C99_INLINE -DHAVE_INLINE -D_CUDA -D_GPU
+#LDFLAGS        = -L$(KL1P)/bin/unix -L$(LBFGS)/lib/.libs -lKLab64 -lpthread -ldl -llbfgs
+LDFLAGS = -L/software/GCCLIBS/lib -L/software/cuda/12.6.2/lib64 -lpthread -ldl -lgomp -lcudart
+INCLUDE = -I/software/GCCLIBS/include -I$(KL1P)/include -I$(KL1P)/libs/Armadillo/include
+LIBCBLAS	= -lgslcblas
+LIBFFTW		= -lfftw3_omp -lfftw3
+
+GPUSRCS = qpicudakernel.cu
+GPUOBJS = qpicudakernel.o
+
+%.o : %.cu
+	$(NVCC) -c $< -o $@
+

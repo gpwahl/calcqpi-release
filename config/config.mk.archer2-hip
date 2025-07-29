@@ -1,0 +1,18 @@
+HIPCC	= hipcc -O3 -I${CRAY_MPICH_DIR}/include -I$(FFTW_INC) -I../include -D__HIP_PLATFORM_AMD__ -fopenmp --offload-arch=gfx90a -D_mpi_version
+CC	= mpic++
+LD	= mpic++ 
+CPP	= $(CC)
+install = install
+account = $(word 2, $(subst /, ,$(HOME)))
+instdir = /work/$(account)/$(account)/shared/bin.hip
+CCFLAGS	= -fopenmp -O3 -D_mpi_version -DGSL_RANGE_CHECK_OFF -DGSL_C99_INLINE -DHAVE_INLINE -D_HIP -D__HIP_PLATFORM_AMD__ -D_GPU
+LDFLAGS	= -fopenmp --hip-link --offload-arch=gfx90a -L$(FFTW_DIR) -L${CRAY_MPICH_DIR}/lib -L/opt/cray/pe/mpich/8.1.23/gtl/lib ${PE_MPICH_GTL_LIBS_amd_gfx90a}
+INCLUDE	= -I$(FFTW_INC) $(CRAY_ROCM_INCLUDE_OPTS) 
+LIBCBLAS	= -lgslcblas
+LIBFFTW	= -lfftw3_omp -lfftw3
+
+GPUSRCS = qpihipkernel.cc
+GPUOBJS = qpihipkernel.o
+
+qpihipkernel.o : qpihipkernel.cc
+	$(HIPCC) -c $< -o $@

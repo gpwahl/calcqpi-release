@@ -1,0 +1,14 @@
+CC      = mpic++ 
+LD      = mpic++ 
+CPP     = $(CC)
+install = install
+instdir = /home/gwahl_hpc/bin
+KL1P    = $(HOME)/scratch/src/KL1p-0.4.2
+LBFGS   = $(HOME)/scratch/src/liblbfgs-1.10
+CCFLAGS = -fopenmp -O3 -D_mpi_version -DGSL_RANGE_CHECK_OFF -DGSL_C99_INLINE -DHAVE_INLINE
+#LDFLAGS        = -L$(KL1P)/bin/unix -L$(LBFGS)/lib/.libs -lKLab64 -lpthread -ldl -llbfgs
+LDFLAGS = -lpthread -ldl -lgomp
+INCLUDE = -I$(KL1P)/include -I$(KL1P)/libs/Armadillo/include
+LIBCBLAS	= -lgslcblas
+LIBFFTW		= -lfftw3_omp -lfftw3
+

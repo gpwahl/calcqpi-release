@@ -1,0 +1,12 @@
+CC	= mpic++
+LD	= mpic++ 
+CPP	= $(CC)
+install = install
+account = $(word 2, $(subst /, ,$(HOME)))
+instdir = /work/$(account)/$(account)/shared/bin
+CCFLAGS	= -fopenmp -O3 -D_mpi_version -DGSL_RANGE_CHECK_OFF -DGSL_C99_INLINE -DHAVE_INLINE 
+LDFLAGS	= -fopenmp -L$(FFTW_DIR) -L${CRAY_MPICH_DIR}/lib -lpthread -ldl   
+INCLUDE	= -I$(FFTW_INC) $(CRAY_ROCM_INCLUDE_OPTS) 
+LIBCBLAS	= -lgslcblas
+LIBFFTW	= -lfftw3_omp -lfftw3
+
