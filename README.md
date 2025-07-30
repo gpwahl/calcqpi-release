@@ -6,7 +6,7 @@
 
 Homepage: <https://wahl.wp.st-andrews.ac.uk/calcqpi>
 
-Github: <https://github.com/gpwahl/calcqpi-scipost-release> (version accompanying preprint)
+Github: <https://github.com/gpwahl/calcqpi-release> (version accompanying preprint)
 
 CalcQPI is a code to calculate quasi-particle interference using the continuum Green's function approach. It is based on on the continuum Green’s function approach developed by A. Kreisel, P. Hirschfeld and collaborators [1, 2] to model quasi-particle interference (QPI) and understand the electronic structure of quantum materials. 
 
