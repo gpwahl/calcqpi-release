@@ -32,4 +32,8 @@ For information about the installation, see [INSTALL](INSTALL.md).
 
 ### Running the code
 
-The code is executed using `calcqpi filename` where filename provides the input file. 
+The code is executed using `calcqpi filename` where filename provides the input file.
+
+### Using the code
+
+When publishing work that uses the code or its algorithms, please cite the accompanying preprint, see [HOW_TO_CITE](HOW_TO_CITE.md).
