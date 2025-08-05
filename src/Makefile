@@ -47,7 +47,7 @@ default:
 	$(MAKE) all
 
 install:
-	$(install) $(PROJ1) $(PROJ3) $(instdir)
+	$(install) -d $(PROJ1) $(PROJ3) $(instdir)
 
 depend:
 	@makedepend -Y $(SRC1) $(SRC3) 2> /dev/null
