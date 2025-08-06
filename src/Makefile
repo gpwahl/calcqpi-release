@@ -47,6 +47,7 @@ default:
 	$(MAKE) all
 
 install:
+	$(install) -d $(instdir)
 	$(install) $(PROJ1) $(PROJ3) $(instdir)
 
 depend:
