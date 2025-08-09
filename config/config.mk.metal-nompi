@@ -5,7 +5,7 @@ install = install
 instdir = $(HOME)/bin
 CCFLAGS	=  -Xclang -fopenmp -O3 -std=c++17 -I./metal-cpp -O2 -DGSL_RANGE_CHECK_OFF -DGSL_C99_INLINE -DHAVE_INLINE -D_METAL -D_GPU
 LDFLAGS	= -L/opt/homebrew/lib -lpthread -ldl -lomp -fno-objc-arc -framework Metal -framework Foundation -framework MetalKit -framework QuartzCore
-INCLUDE	= -I$(KL1P)/include -I$(KL1P)/libs/Armadillo/include -I$(LBFGS)/include -I/opt/homebrew/include -I$(HOME)/src/metal-cpp
+INCLUDE	= -I/opt/homebrew/include -I$(HOME)/src/metal-cpp
 METALINCLUDE=
 LIBCBLAS	= -lgslcblas
 LIBFFTW	= -lfftw3_omp -lfftw3

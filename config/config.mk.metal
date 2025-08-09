@@ -3,8 +3,6 @@ LD	= mpic++
 CPP	= $(CC)
 install = install
 instdir = $(HOME)/bin
-KL1P	= $(HOME)/src/KL1p-0.4.2
-LBFGS	= $(HOME)/src/liblbfgs-1.10
 CCFLAGS	=  -Xclang -fopenmp -O3 -std=c++17 -I./metal-cpp -O2 -D_mpi_version -DGSL_RANGE_CHECK_OFF -DGSL_C99_INLINE -DHAVE_INLINE -D_METAL -D_GPU
 LDFLAGS	= -L/opt/homebrew/lib -lpthread -ldl -lomp -fno-objc-arc -framework Metal -framework Foundation -framework MetalKit -framework QuartzCore
 INCLUDE	= -I/opt/homebrew/include -I$(HOME)/src/metal-cpp

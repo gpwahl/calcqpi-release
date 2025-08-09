@@ -4,11 +4,9 @@ LD      = mpic++
 CPP     = $(CC)
 install = install
 instdir = /home/gwahl_hpc/bin.cuda
-KL1P    = $(HOME)/src/KL1p-0.4.2
-LBFGS   = $(HOME)/src/liblbfgs-1.10
 CCFLAGS = -fopenmp -O3 -D_mpi_version -DGSL_RANGE_CHECK_OFF -DGSL_C99_INLINE -DHAVE_INLINE -D_CUDA -D_GPU
 LDFLAGS = -lpthread -ldl -lgomp -lcudart 
-INCLUDE = -I$(LBFGS)/include 
+INCLUDE =  
 LIBCBLAS	= -lgslcblas
 LIBFFTW	= -lfftw3_omp -lfftw3
 

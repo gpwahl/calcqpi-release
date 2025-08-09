@@ -7,7 +7,7 @@ account = $(word 2, $(subst /, ,$(HOME)))
 instdir = /work/$(account)/$(account)/shared/bin.cuda
 CCFLAGS	= -fopenmp -O3 -D_mpi_version -DGSL_RANGE_CHECK_OFF -DGSL_C99_INLINE -DHAVE_INLINE -D_CUDA -D_GPU
 LDFLAGS	= -L$(NVHPC_ROOT)/cuda/lib64 -lpthread -ldl -lgomp -lcudart 
-INCLUDE	= -I$(LBFGS)/include -I$(NVHPC_ROOT)/cuda/include
+INCLUDE	= -I$(NVHPC_ROOT)/cuda/include
 LIBCBLAS	= -lgslcblas
 LIBFFTW	= -lfftw3_omp -lfftw3
 
