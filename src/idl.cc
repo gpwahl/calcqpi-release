@@ -633,6 +633,7 @@ void idl::open(const char *name)
       cerr<<"Error while opening file "<<name<<" for reading."<<endl
 	  <<e.what()<<endl;
       failed=true;
+      return;
     }
     read(is);
     is.close();
