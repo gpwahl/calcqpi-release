@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
     if(!lf) {
       cerr.rdbuf(oldcerrstreambuf);
       if(errbuf.str().length()) cerr<<errbuf.str()<<endl;
-      return -1;
+      return 1;
     }
     if(lf.probefield("logfile")) {
       string logfile=lf.getstring("logfile");
@@ -198,7 +198,7 @@ int main(int argc, char *argv[])
     if(lf.probefield("tbfile")) tbfile=lf.getstring("tbfile");
     else {
       ExecuteCPU0 cerr<<"No tightbinding model specified ... exiting."<<endl;
-      return 0;
+      return 1;
     }
     if(lf.probefield("stbfile")) stbfile=lf.getstring("stbfile");
     if(lf.probefield("fermi")) efermi=lf.getvalue("fermi");
@@ -228,7 +228,7 @@ int main(int argc, char *argv[])
       else if(outname=="uspf") mode=uspfmode;
       else {
 	ExecuteCPU0 cerr<<"Unrecognized output mode.";
-	return 0;
+	return 1;
       }
     }
     if(lf.probefield("qpifile")) qpifile=lf.getstring("qpifile");
@@ -277,7 +277,7 @@ int main(int argc, char *argv[])
     model=new tightbind(tbfile.c_str(),efermi,scmodel);
     if(!*model) {
       ExecuteCPU0 cerr<<"Error loading TB model from "<<tbfile<<", exiting."<<endl;
-      return 0;
+      return 1;
     }
     if(scmodel) {
       maxbands=model->getbands()>>1;
@@ -295,7 +295,7 @@ int main(int argc, char *argv[])
       smodel=new tightbind(stbfile.c_str(),efermi,scmodel);
       if(!*smodel) {
 	ExecuteCPU0 cerr<<"Error loading surface TB model from "<<stbfile<<", exiting."<<endl;
-	return 0;
+	return 1;
       }
     }
     if(gf!=normalgreen) {
@@ -496,7 +496,7 @@ int main(int argc, char *argv[])
 	orbitals.dimensions(xs,ys);
 	if((xs!=ys) || (xs!=(2*window+1)*oversamp)) {
 	  ExecuteCPU0 cerr<<"Orbital functions in "<<orbitalfile<<" have unsuitable dimensions."<<endl;
-	   return 0;
+	   return 1;
 	}
 	arr.resize(xs);
 	for(size_t i=0;i<xs;i++)
@@ -586,7 +586,7 @@ int main(int argc, char *argv[])
 	  wfs.push_back(wannierfunctions(orbitalfiles[i],zheight,window,oversamp,prearr[i]));
 	  if(!wfs[i]) {
 	    ExecuteCPU0 cerr<<"Error loading wave function file "<<orbitalfiles[i]<<endl;
-	    return 0;
+	    return 1;
 	  }
 	}
 	if(((maxbands>>1)==orbitalfiles.size()) && spin) {
@@ -799,10 +799,9 @@ int main(int argc, char *argv[])
       cerr.rdbuf(oldcerrstreambuf); cout.rdbuf(oldcoutstreambuf);
       logfilestr.close();
       if(atslog) delete atslog;
-      return 0;
     }
   else help();
-  return 1;
+  return 0;
 }
 
 

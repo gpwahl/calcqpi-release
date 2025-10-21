@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
     if(!lf) {
       cerr.rdbuf(oldcerrstreambuf);
       if(errbuf.str().length()) cerr<<errbuf.str()<<endl;
-      return -1;
+      return 1;
     }
     if(lf.probefield("logfile")) {
       string logfile=lf.getstring("logfile");
@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
     if(errbuf.str().length()) cerr<<"Error while reading configuration file:"<<endl<<errbuf.str();
     if(!lf.probefield("mkwffile")) {
       cerr<<"No output file specified, exiting."<<endl;
-      return 0;
+      return 1;
     }
     if(lf.probefield("oversamp")) oversamp=lf.getintvalue("oversamp");
     if(lf.probefield("window")) window=lf.getintvalue("window");
@@ -174,7 +174,7 @@ int main(int argc, char *argv[])
       basisvectors.push_back(avector);
       if(!lf.probefield("basisvector[1]")) {
 	cerr<<"Error: only one basis vector specified."<<endl;
-	return 0;
+	return 1;
       }
       avector=lf.getvector("basisvector[1]");
       avector.resize(2,0.0);
@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
 	modwfs.push_back(new xcfloader(modorbitalfiles[i].c_str()));
 	if(!modwfs[i]) {
 	  cerr<<"Error loading wave function file "<<modorbitalfiles[i]<<endl;
-	  return 0;
+	  return 1;
 	}
 	ostringstream modposstr;
 	modposstr<<"modpos["<<i<<"]";
@@ -242,7 +242,7 @@ int main(int argc, char *argv[])
       orbitals.dimensions(xs,ys);
       if((xs!=ys) || (xs!=(2*window+1)*oversamp)) {
 	cerr<<"Orbital functions in "<<orbitalfile<<" have unsuitable dimensions."<<endl;
-	return 0;
+	return 1;
       }
       arr.resize(xs);
       for(size_t i=0;i<xs;i++)
@@ -326,7 +326,7 @@ int main(int argc, char *argv[])
 	wfs.push_back(wannierfunctions(orbitalfiles[i],shift,zheight,window,oversamp,prearr[i]));
 	if(!wfs[i]) {
 	  cerr<<"Error loading wave function file "<<orbitalfiles[i]<<endl;
-	  return 0;
+	  return 1;
 	}
       }
     } else if(lf.probefield("idlorbitalfiles")) {
@@ -378,7 +378,7 @@ int main(int argc, char *argv[])
       intorb->dimensions(xs,ys);
       if((xs!=ys) || (xs!=(2*window+1)*oversamp)) {
 	cerr<<"Orbital functions in have unsuitable dimensions."<<endl;
-	return 0;
+	return 1;
       }
       arr.resize(xs);
       for(size_t i=0;i<xs;i++)
@@ -426,10 +426,9 @@ int main(int argc, char *argv[])
       cout<<"Writing wave function file to "<<lf.getstring("mkwffile")<<endl;
       wfout>>lf.getstring("mkwffile").c_str();
     }
-    return 0;
   }
   else help();
-  return 1;
+  return 0;
 }
 
 
