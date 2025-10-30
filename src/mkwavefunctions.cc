@@ -99,6 +99,7 @@ void help()
       <<"Input wave functions from DFT for further modification"<<endl
       <<" modorbitalfiles: list of files for Wannier functions"<<endl
       <<" modpos[0],...           : shift position of input wave function"<<endl
+      <<" orbitals in this mode is a list of number indexing the 'modorbitalfiles', basisvector needs to be specified in Angstrom"<<endl
       <<"Interpolation of orbitals:"<<endl
       <<" idlorbitalfiles         : list of idl files containing the Wannier functions for interpolation"<<endl
       <<" values=(x1,x2,...)      : values corresponding to filename1, filename2, ..., is no values are provided, x1 is assumed to be zero and xn 1"<<endl
