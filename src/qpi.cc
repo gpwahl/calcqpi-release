@@ -172,7 +172,7 @@ size_t mkthresholdlist(flaglist &flags, vector<wannierfunctions> &wf,size_t wind
 		    }
 		    factor=wf[spinbands+o1].getwave_cached(x-xn1*oversamp,y-yn1*oversamp)*wf[spinbands+o2].getwave_cached(x-xn2*oversamp,y-yn2*oversamp);
 		    if(fabs(factor)>threshold*maxval) {
-		      struct flaglistentry fle={i,j,o1,o2,factor};
+		      struct flaglistentry fle={i,j,spinbands+o1,spinbands+o2,factor};
 		      flags[xn1][yn1][xn2][yn2].push_back(fle);
 		      count++;
 		    }
